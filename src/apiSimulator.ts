@@ -5,16 +5,17 @@ export interface Product {
   name: string;
   price: number;
 }
-
+    
 export const fetchProductCatalog = (): Promise<Product[]> => {
     return new Promise((resolve, reject) => {
     setTimeout(() => {
-        if (Math.random() < 0.8) {
-        resolve([
+        let products: Product[] = [
             { id: 1, name: "Laptop", price: 1200 },
             { id: 2, name: "Headphones", price: 200 },
             { id: 3, name: "Keyboard", price: 80 },
-        ]);
+        ];
+        if (Math.random() < 0.8) {
+        resolve(products);
         } else {
         reject(new NetworkError("Failed to fetch product catalog"));
         }
