@@ -5,7 +5,7 @@ export interface Product {
   name: string;
   price: number;
 }
-    
+
 export const fetchProductCatalog = (): Promise<Product[]> => {
     return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -32,11 +32,12 @@ export interface Review {
 export const fetchProductReviews = (productId: number): Promise<Review[]> => {
     return new Promise((resolve, reject) => {
     setTimeout(() => {
-        if (Math.random() < 0.8) {
-        resolve([
+        let review: Review[] = [
             { productId, rating: 5, comment: "Great product!" },
             { productId, rating: 4, comment: "Good value for money." },
-        ]);
+        ];
+        if (Math.random() < 0.8) {
+        resolve(review);
         } else {
         reject(new NetworkError(`Failed to fetch reviews for product ID: ${productId}`));
         }
