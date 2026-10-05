@@ -42,3 +42,25 @@ export const fetchProductReviews = (productId: number): Promise<Review[]> => {
     }, 1500);
     });
 };
+
+export interface SalesReport {
+    totalSales: number;
+    unitsSold: number;
+    averagePrice: number;
+}
+
+export const fetchSalesReport = (): Promise<SalesReport> => {
+    return new Promise((resolve, reject) => {
+    setTimeout(() => {
+        if (Math.random() < 0.8) {
+        resolve({
+            totalSales: 10000,
+            unitsSold: 100,
+            averagePrice: 100,
+        });
+        } else {
+        reject(new NetworkError("Failed to fetch sales report"));
+        }
+    }, 2000);
+    });
+};
