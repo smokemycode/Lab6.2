@@ -22,3 +22,23 @@ export const fetchProductCatalog = (): Promise<Product[]> => {
     });
 };
 
+export interface Review {
+  productId: number;
+  rating: number;
+  comment: string;
+}
+
+export const fetchProductReviews = (productId: number): Promise<Review[]> => {
+    return new Promise((resolve, reject) => {
+    setTimeout(() => {
+        if (Math.random() < 0.8) {
+        resolve([
+            { productId, rating: 5, comment: "Great product!" },
+            { productId, rating: 4, comment: "Good value for money." },
+        ]);
+        } else {
+        reject(new NetworkError(`Failed to fetch reviews for product ID: ${productId}`));
+        }
+    }, 1500);
+    });
+};
